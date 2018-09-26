@@ -14,18 +14,14 @@ public class Test_Criptografia_Seg_Redes_lab1_Cifra_Feistel {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here   
-        String entrada = "10111000";
-        Byte b = 126;
-        Byte a = 0x51;
-        int a2 = 250;
-        String f = Integer.toBinaryString(a2);
-        System.out.println(f);
-        System.out.println(Integer.toBinaryString(211));
-        int z = a2 ^ 211;
-        System.out.println(Integer.toBinaryString(z));
-        //System.out.println(String.valueOf(bit));
-    }
-    
+    public static void main(String[] args) {  
+        CifraFeistel cf = new CifraFeistel();
+        System.out.println("Entrada: 250\nChave 1: 12\nChave 2: 11");
+        String block = cf.criptografar(250,12,11);
+        Binario b = new Binario();
+        int blo = b.converterBinarioParaDecimal(block);
+        System.out.println("Criptografado: "+blo);
+        block = cf.descriptografar(blo,12,11);
+        System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(block));      
+    }   
 }
