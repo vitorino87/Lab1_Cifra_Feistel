@@ -17,11 +17,11 @@ public class Test_Criptografia_Seg_Redes_lab1_Cifra_Feistel {
     public static void main(String[] args) {  
         CifraFeistel cf = new CifraFeistel();
         System.out.println("Entrada: 250\nChave 1: 12\nChave 2: 11");
-        String block = cf.criptografar(250,12,11);
+        String bloco = cf.criptografar(250,12,11);
         Binario b = new Binario();
-        int blo = b.converterBinarioParaDecimal(block);
-        System.out.println("Criptografado: "+blo);
-        block = cf.descriptografar(blo,12,11);
-        System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(block));      
+        int block = b.converterBinarioParaDecimal(bloco);
+        System.out.println("Criptografado: "+block);
+        bloco = cf.descriptografar(block,12,11);
+        System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(bloco));      
     }   
 }
