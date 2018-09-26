@@ -23,7 +23,7 @@ public class CifraFeistel {
         int L = binario.converterBinarioParaDecimal(parteL);
         int R = binario.converterBinarioParaDecimal(parteR);
         //Funcao F
-        int funcao = R+key1;
+        int funcao = calcularFuncao(R,key1);
         //Realizar Operação XOR
         int xor = L ^ funcao;
         //invertendo os resultados
@@ -33,7 +33,7 @@ public class CifraFeistel {
 
 ///////////////////////2ª PARTE/////////////////////////////////////////////////
         //calculando a função
-        funcao = R + key2;
+        funcao = calcularFuncao(R, key2);
         //realizando o xor
         xor = L ^ funcao;
         //invertendo os resultados
@@ -55,8 +55,8 @@ public class CifraFeistel {
         //convertendo binário para decimal
         int L = binario.converterBinarioParaDecimal(parteL);
         int R = binario.converterBinarioParaDecimal(parteR);
-        //calculando a função
-        int funcao = L+key2;
+        //calculando a função        
+        int funcao = calcularFuncao(L, key2);
         //realizando o xor
         int xor = funcao ^ R;
         //invertendo os resultados
@@ -64,12 +64,16 @@ public class CifraFeistel {
         L = xor;
 ///////////////FIM DA 1ª PARTE///////////////////////////////////////////
         //calculando a função
-        funcao = L+key1;
+        funcao = calcularFuncao(L, key1);
         //realizando o xor
         xor = funcao ^ R;
         //invertendo os resultados
         R = L;
         L = xor;
         return Integer.toBinaryString(L) + Integer.toBinaryString(R);
+    }
+    
+    public int calcularFuncao(int val, int key){        
+        return val+key*6;
     }
 }
