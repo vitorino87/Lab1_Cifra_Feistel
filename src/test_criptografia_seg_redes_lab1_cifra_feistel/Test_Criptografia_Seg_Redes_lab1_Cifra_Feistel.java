@@ -31,12 +31,17 @@ public class Test_Criptografia_Seg_Redes_lab1_Cifra_Feistel {
         Binario b = new Binario();
         
         System.out.println("Número inserido: "+valor);
+        System.out.println("Caractere associado: "+(char)valor);
                 
         int blocoCripto = b.converterBinarioParaDecimal(bloco);
         System.out.println("Criptografado: "+blocoCripto);
+        int a = blocoCripto;
+        System.out.println("Caractere associado - criptografia: "+(char)a);
         
         //processo de descriptografia
         bloco = cf.descriptografar(blocoCripto,key1,key2);
-        System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(bloco));      
+        System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(bloco)); 
+        a = b.converterBinarioParaDecimal(bloco);
+        System.out.println("Caracter associado - descriptografado: "+(char)a);
     }   
 }
