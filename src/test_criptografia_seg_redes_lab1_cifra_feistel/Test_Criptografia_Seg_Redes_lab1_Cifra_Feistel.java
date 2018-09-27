@@ -17,18 +17,25 @@ public class Test_Criptografia_Seg_Redes_lab1_Cifra_Feistel {
      */
     public static void main(String[] args) {  
         Scanner sc = new Scanner(System.in);
-        System.out.println("Insira um número de até 8 bits:");
+        System.out.println("Insira um número decimal de 8 bits:");
         int valor = sc.nextInt();
-        System.out.println("Insira uma chave de até 4 bits:");
+        System.out.println("Insira uma chave decimal de 4 bits:");
         int key1 = sc.nextInt();
-        System.out.println("Insira outra chave de até 4 bits:");
+        System.out.println("Insira outra chave decimal de 4 bits:");
         int key2 = sc.nextInt();
+        
+        //processo de criptografia
         CifraFeistel cf = new CifraFeistel();                
         String bloco = cf.criptografar(valor,key1,key2);
+
         Binario b = new Binario();
-        System.out.println("valor inserido: "+valor);
+        
+        System.out.println("Número inserido: "+valor);
+                
         int blocoCripto = b.converterBinarioParaDecimal(bloco);
         System.out.println("Criptografado: "+blocoCripto);
+        
+        //processo de descriptografia
         bloco = cf.descriptografar(blocoCripto,key1,key2);
         System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(bloco));      
     }   
