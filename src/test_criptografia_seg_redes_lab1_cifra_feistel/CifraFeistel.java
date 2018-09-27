@@ -15,13 +15,14 @@ public class CifraFeistel {
         //Entrada do bloco de 8 bits
         //Convertendo para binário e depois string
         String bloco = Integer.toBinaryString(entrada);
+        bloco = checarTamanho(bloco, 8);
         //quebrando a String em duas partes
         String parteL = bloco.substring(0, bloco.length()/2);
-        String parteR = bloco.substring(bloco.length()/2, 8);             
+        String parteR = bloco.substring(bloco.length()/2, bloco.length());             
         //convertendo a parte2 para int
         Binario binario = new Binario();
         int L = binario.converterBinarioParaDecimal(parteL);
-        int R = binario.converterBinarioParaDecimal(parteR);
+        int R = binario.converterBinarioParaDecimal(parteR);        
         //Funcao F
         int funcao = calcularFuncao(R,key1);
         //Realizar Operação XOR
@@ -75,14 +76,7 @@ public class CifraFeistel {
     }
     
     public int calcularFuncao(int val, int key){        
-        return val+key;
-    }
-    
-    public void criptografar(String input, int key1, int key2){
-        //input = checarTamanho(input);
-        String R = input.substring(0, input.length()/2);
-        String L = input.substring(input.length()/2, input.length());
-        
+        return val-1+key+22;
     }
     
     public String checarTamanho(String input, int tam){
