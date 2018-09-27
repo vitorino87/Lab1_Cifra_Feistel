@@ -49,6 +49,7 @@ public class CifraFeistel {
 ///////////////1ª PARTE///////////////////////////////////////////////////  
         //preparando e dividindo o bloco em L e R
         String bloco = Integer.toBinaryString(blocoCripto);
+        bloco = checarTamanho(bloco,8);
         String parteL = bloco.substring(0, bloco.length()/2);
         String parteR = bloco.substring(bloco.length()/2, bloco.length()); 
         Binario binario = new Binario();
@@ -70,10 +71,27 @@ public class CifraFeistel {
         //invertendo os resultados
         R = L;
         L = xor;
-        return Integer.toBinaryString(L) + Integer.toBinaryString(R);
+        return checarTamanho(Integer.toBinaryString(L),4) + checarTamanho(Integer.toBinaryString(R),4);
     }
     
     public int calcularFuncao(int val, int key){        
-        return val+key*6;
+        return val+key;
     }
+    
+    public void criptografar(String input, int key1, int key2){
+        //input = checarTamanho(input);
+        String R = input.substring(0, input.length()/2);
+        String L = input.substring(input.length()/2, input.length());
+        
+    }
+    
+    public String checarTamanho(String input, int tam){
+        if(input.length()<tam){
+            int num = tam - input.length();
+            for(int i=0;i<num;i++){
+                input = "0"+input;
+            }            
+        }
+        return input;
+    }        
 }

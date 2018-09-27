@@ -10,18 +10,20 @@ package test_criptografia_seg_redes_lab1_cifra_feistel;
  * @author Win7
  */
 public class Test_Criptografia_Seg_Redes_lab1_Cifra_Feistel {
-
+    private final static int valor = 128;
+    private final static int key1 = 5;
+    private final static int key2 = 6;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {  
-        CifraFeistel cf = new CifraFeistel();
-        System.out.println("Entrada: 250\nChave 1: 12\nChave 2: 11");
-        String bloco = cf.criptografar(250,12,11);
+        CifraFeistel cf = new CifraFeistel();                
+        String bloco = cf.criptografar(valor,key1,key2);
         Binario b = new Binario();
-        int block = b.converterBinarioParaDecimal(bloco);
-        System.out.println("Criptografado: "+block);
-        bloco = cf.descriptografar(block,12,11);
+        System.out.println("valor inserido: "+valor);
+        int blocoCripto = b.converterBinarioParaDecimal(bloco);
+        System.out.println("Criptografado: "+blocoCripto);
+        bloco = cf.descriptografar(blocoCripto,key1,key2);
         System.out.println("Descriptografado: "+b.converterBinarioParaDecimal(bloco));      
     }   
 }
