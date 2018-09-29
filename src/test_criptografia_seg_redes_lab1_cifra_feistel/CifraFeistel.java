@@ -126,15 +126,15 @@ public class CifraFeistel {
                 keyAux2[i] = Integer.valueOf(String.valueOf(key2.charAt(i)));
             }
         } catch (Exception ex) {
-            try{
+            try {
                 for (int i = 0; i < key1.length(); i++) {
                     keyAux1[i] = key1.charAt(i);
                 }
                 for (int i = 0; i < key2.length(); i++) {
                     keyAux2[i] = key2.charAt(i);
                 }
-            }catch(Exception ex1){
-                System.out.println("Chave inválida. Erro: "+ex1.toString());
+            } catch (Exception ex1) {
+                System.out.println("Chave inválida. Erro: " + ex1.toString());
             }
         }
 
@@ -161,12 +161,26 @@ public class CifraFeistel {
         String text = "";
         int[] keyAux1 = new int[key1.length()];
         int[] keyAux2 = new int[key2.length()];
-        for (int i = 0; i < key1.length(); i++) {
-            keyAux1[i] = Integer.valueOf(String.valueOf(key1.charAt(i)));
+        try {
+            for (int i = 0; i < key1.length(); i++) {
+                keyAux1[i] = Integer.valueOf(String.valueOf(key1.charAt(i)));
+            }
+            for (int i = 0; i < key2.length(); i++) {
+                keyAux2[i] = Integer.valueOf(String.valueOf(key2.charAt(i)));
+            }
+        } catch (Exception ex) {
+            try {
+                for (int i = 0; i < key1.length(); i++) {
+                    keyAux1[i] = key1.charAt(i);
+                }
+                for (int i = 0; i < key2.length(); i++) {
+                    keyAux2[i] = key2.charAt(i);
+                }
+            } catch (Exception ex1) {
+                System.out.println("Chave inválida. Erro: " + ex1.toString());
+            }
         }
-        for (int i = 0; i < key2.length(); i++) {
-            keyAux2[i] = Integer.valueOf(String.valueOf(key2.charAt(i)));
-        }
+
         int cont1 = 0;
         int cont2 = 0;
         for (int i = 0; i < textCripto.length(); i++) {
