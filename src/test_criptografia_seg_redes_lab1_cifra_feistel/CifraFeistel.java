@@ -43,7 +43,7 @@ public class CifraFeistel {
         //invertendo os resultados
         L = R;
         R = xor;
-        bloco = Integer.toBinaryString(L) + Integer.toBinaryString(R);
+        bloco = checarTamanho(Integer.toBinaryString(L),4) + checarTamanho(Integer.toBinaryString(R),4);
         return bloco;
         //System.out.println("Bloco cifrado: "+bloco);
 ///////////////////////FIM DA 2ª PARTE//////////////////////////////////////////   
@@ -79,8 +79,10 @@ public class CifraFeistel {
     }
 
     public int calcularFuncao(int val, int key) {
-        return val - 1 + key + 22;
+        //return val - 1 + key + 22;
         //return val+key;
+        return val ^ key;
+        
     }
 
     public String checarTamanho(String input, int tam) {
