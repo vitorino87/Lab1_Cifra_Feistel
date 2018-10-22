@@ -16,20 +16,24 @@ public class CifraFeistel {
     public String criptografar(int entrada, int key1, int key2) {
 ///////////////////////1Âª PARTE/////////////////////////////////////////////////        
         //Entrada do bloco de 8 bits
-        //Convertendo para binÃ¡rio e depois string
+        //Convertendo para binário e depois string
         String bloco = Integer.toBinaryString(entrada);
         bloco = checarTamanho(bloco, 8);
         //quebrando a String em duas partes
         String parteL = bloco.substring(0, bloco.length() / 2);
         String parteR = bloco.substring(bloco.length() / 2, bloco.length());
-        //convertendo a parte2 para int
+        
+        //convertendo para decimal
         Binario binario = new Binario();
         int L = binario.converterBinarioParaDecimal(parteL);
         int R = binario.converterBinarioParaDecimal(parteR);
+        
         //Funcao F
         int funcao = calcularFuncao(R, key1);
-        //Realizar OperaÃ§Ã£o XOR
+        
+        //Realizar Operação XOR
         int xor = L ^ funcao;
+        
         //invertendo os resultados
         L = R;
         R = xor;
@@ -116,12 +120,16 @@ public class CifraFeistel {
         }
         return text;
     }
-
+    
     public String realizarCriptografia(String text, String key1, String key2) {
         String textCripto = "";
+        //criar dois array com o tamanho de cada key
         int[] keyAux1 = new int[key1.length()];
         int[] keyAux2 = new int[key2.length()];
-        try {
+        
+        //preeche os array com cada número das keys
+        try {            
+            //Se a chave tiver letras
             for (int i = 0; i < key1.length(); i++) {
                 keyAux1[i] = Integer.valueOf(String.valueOf(key1.charAt(i)));
             }
@@ -130,6 +138,7 @@ public class CifraFeistel {
             }
         } catch (Exception ex) {
             try {
+                //Se a chave tiver apenas números
                 for (int i = 0; i < key1.length(); i++) {
                     keyAux1[i] = key1.charAt(i);
                 }
@@ -137,19 +146,23 @@ public class CifraFeistel {
                     keyAux2[i] = key2.charAt(i);
                 }
             } catch (Exception ex1) {
-                System.out.println("Chave invÃ¡lida. Erro: " + ex1.toString());
+                //Se a chave for inválida
+                System.out.println("Chave inválida. Erro: " + ex1.toString());
             }
         }
-
+        
+        //cont1 e cont2 servem para posicionar os valores das keys
         int cont1 = 0;
-        int cont2 = 0;
-        for (int i = 0; i < text.length(); i++) {
+        int cont2 = 0;        
+        for (int i = 0; i < text.length(); i++) {            
             String aux = criptografar(text.charAt(i), keyAux1[cont1], keyAux2[cont2]);
             Binario b = new Binario();
             int auxChar = b.converterBinarioParaDecimal(aux);
             textCripto += (char) auxChar;
             cont1++;
             cont2++;
+            //servem para zerar cont1 e cont2 quando qualquer uma delas chegarem
+            //ao tamanho da chave
             if (cont1 == key1.length()) {
                 cont1 = 0;
             }
